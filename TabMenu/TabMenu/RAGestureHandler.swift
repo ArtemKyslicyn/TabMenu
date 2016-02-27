@@ -8,6 +8,6 @@
 
 import UIKit
 
-class RASwipeHandler: NSObject {
+class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
 
 }

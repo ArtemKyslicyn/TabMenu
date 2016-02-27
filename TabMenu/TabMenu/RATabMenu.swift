@@ -15,12 +15,33 @@ import UIKit
 }
 
 
-class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
+public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
   let menuScrollView = UIScrollView()
   let controllerScrollView = UIScrollView()
-  var controllerArray : [UIViewController] = []
-  var menuItems : [RAMenuItemView] = []
-  var menuItemWidths : [CGFloat] = []
-  let settings = RATabMenuSettings()
+  
+  private var settings = RATabMenuSettings()
+  private var pageManager : RAPageManager!
+  private var tabMenuAppeareance :TabMenuAppeareance!
+  
+  
+  required public init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  public init(viewControllers: [UIViewController], frame: CGRect, settings: RATabMenuSettings) {
+    super.init(nibName: nil, bundle: nil)
+    self.settings  = settings
+    pageManager.controllerArray = viewControllers
+    tabMenuAppeareance = TabMenuAppeareance(menuScrollView: self.menuScrollView, controllerScrollView: controllerScrollView, settings: settings, view: self.view)
+    self.view.frame = frame
+    
+  
+  }
+  
+  
+  
+
+
+
   
 }

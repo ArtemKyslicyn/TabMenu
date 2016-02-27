@@ -18,19 +18,16 @@ public class RATabMenuSettings: NSObject {
 
   public var menuHeight : CGFloat = 34.0
   public var menuMargin : CGFloat = 15.0
-  public var menuItemWidth : CGFloat = 111.0
-  public var selectionIndicatorHeight : CGFloat = 3.0
+ 
   var totalMenuItemWidthIfDifferentWidths : CGFloat = 0.0
   public var scrollAnimationDurationOnMenuItemTap : Int = 500 // Millisecons
   var startingMenuMargin : CGFloat = 0.0
   var menuItemMargin : CGFloat = 0.0
   
-  var selectionIndicatorView : UIView = UIView()
   
   var currentPageIndex : Int = 0
   var lastPageIndex : Int = 0
   
-  public var selectionIndicatorColor : UIColor = UIColor.whiteColor()
   public var selectedMenuItemLabelColor : UIColor = UIColor.whiteColor()
   public var unselectedMenuItemLabelColor : UIColor = UIColor.lightGrayColor()
   public var scrollMenuBackgroundColor : UIColor = UIColor.blackColor()
@@ -44,9 +41,7 @@ public class RATabMenuSettings: NSObject {
   public var menuItemSeparatorRoundEdges : Bool = false
   
   public var addBottomMenuHairline : Bool = true
-  public var menuItemWidthBasedOnTitleTextWidth : Bool = false
-  public var titleTextSizeBasedOnMenuItemWidth : Bool = false
-  public var useMenuLikeSegmentedControl : Bool = false
+
   public var centerMenuItems : Bool = false
   public var enableHorizontalBounce : Bool = true
   public var hideTopMenuBar : Bool = false
@@ -62,7 +57,5 @@ public class RATabMenuSettings: NSObject {
   var startingPageForScroll : Int = 0
   var didTapMenuItemToScroll : Bool = false
   
-  var pagesAddedDictionary : [Int : Int] = [:]
-
 
 }
