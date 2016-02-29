@@ -9,28 +9,44 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TabMenu/HomeViewController.swift"
-            timestampString = "478081590.877862"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "TabMenu/Demo/Model/FeedItemAppearance.swift"
             timestampString = "478097935.349978"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "12"
             endingLineNumber = "12">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TabMenu.FeedItemAppearance.deinit"
+                  moduleName = "TabMenu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arcilite/Documents/TabMenu/TabMenuDemo/TabMenu/Demo/Model/FeedItemAppearance.swift"
+                  timestampString = "478429899.496928"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TabMenu.FeedItemAppearance.init (TabMenu.FeedItemAppearance.Type)() -&gt; TabMenu.FeedItemAppearance"
+                  moduleName = "TabMenu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arcilite/Documents/TabMenu/TabMenuDemo/TabMenu/Demo/Model/FeedItemAppearance.swift"
+                  timestampString = "478429899.497034"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "8">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -46,6 +62,38 @@
             startingLineNumber = "16"
             endingLineNumber = "16"
             landmarkName = "setUpMenuItemView(_:menuScrollViewHeight:indicatorHeight:separatorPercentageHeight:separatorWidth:separatorRoundEdges:menuItemSeparatorColor:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TabMenu/TabMenu/RATabMenu.swift"
+            timestampString = "478429899.475037"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "init(viewControllers:frame:settings:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TabMenu/TabMenu/RATabMenu.swift"
+            timestampString = "478429899.475037"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "init(viewControllers:frame:settings:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -21,12 +21,13 @@ class LikesViewController: UITableViewController {
     super.viewDidLoad()
     
     self.tableView.registerNib(UINib(nibName: "LikeTableViewCell", bundle: nil), forCellReuseIdentifier: "LikeTableViewCell")
+    self.view.backgroundColor = UIColor.greenColor()
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    print("favorites page: viewWillAppear")
+    print("Likes page: viewWillAppear")
   }
   
   override func viewDidAppear(animated: Bool) {

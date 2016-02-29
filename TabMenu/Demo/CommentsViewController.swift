@@ -12,7 +12,7 @@ class CommentsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       self.view.backgroundColor = UIColor.blueColor()
         // Do any additional setup after loading the view.
     }
 
@@ -20,7 +20,12 @@ class CommentsViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
     
+    print("comments page: viewWillAppear")
+  }
 
     /*
     // MARK: - Navigation

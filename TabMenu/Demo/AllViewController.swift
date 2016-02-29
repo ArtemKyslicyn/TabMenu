@@ -20,14 +20,14 @@ class AllViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    self.view.backgroundColor = UIColor.grayColor()
     self.tableView.registerNib(UINib(nibName: "LikeTableViewCell", bundle: nil), forCellReuseIdentifier: "LikeTableViewCell")
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    print("favorites page: viewWillAppear")
+    print("all  page: viewWillAppear")
   }
   
   override func viewDidAppear(animated: Bool) {

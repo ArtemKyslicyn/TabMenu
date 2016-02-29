@@ -22,12 +22,13 @@ class FollowsViewController: UITableViewController {
     super.viewDidLoad()
     
     self.tableView.registerNib(UINib(nibName: "LikeTableViewCell", bundle: nil), forCellReuseIdentifier: "LikeTableViewCell")
+    self.view.backgroundColor = UIColor.orangeColor()
   }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    print("favorites page: viewWillAppear")
+    print("folows page: viewWillAppear")
   }
   
   override func viewDidAppear(animated: Bool) {

@@ -22,10 +22,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Table View Controller-->
+        <!--All View Controller-->
         <scene sceneID="g7B-Az-A3Q">
             <objects>
-                <tableViewController id="EcZ-Oz-tdc" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AllViewController" id="EcZ-Oz-tdc" customClass="AllViewController" customModule="TabMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FvL-Au-dS1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,10 +39,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J56-U0-Zwk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Table View Controller-->
+        <!--Follows View Controller-->
         <scene sceneID="DTs-BG-9DA">
             <objects>
-                <tableViewController id="lXA-M5-g1g" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FollowsViewController" id="lXA-M5-g1g" customClass="FollowsViewController" customModule="TabMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lHo-IW-ogD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,24 +66,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NmE-bd-5oz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Table View Controller-->
+        <!--Likes View Controller-->
         <scene sceneID="trl-qy-TW7">
             <objects>
-                <tableViewController id="Dcl-ym-tRr" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LikesViewController" id="Dcl-ym-tRr" customClass="LikesViewController" customModule="TabMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pbi-hE-hBI">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="R7a-nl-hzj">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R7a-nl-hzj" id="nii-50-MAV">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Dcl-ym-tRr" id="Gal-HP-FHe"/>
                             <outlet property="delegate" destination="Dcl-ym-tRr" id="uql-wj-fcQ"/>
@@ -93,10 +83,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hWH-ar-UPM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Table View Controller-->
+        <!--Comments View Controller-->
         <scene sceneID="YxK-vl-JAA">
             <objects>
-                <tableViewController id="byd-FU-D8e" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CommentsViewController" id="byd-FU-D8e" customClass="CommentsViewController" customModule="TabMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="PeV-wl-PZz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
