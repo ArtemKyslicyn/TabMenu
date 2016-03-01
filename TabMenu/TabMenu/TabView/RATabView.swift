@@ -20,9 +20,9 @@ class RATabView: UIView {
   
   init(frame:CGRect, titles:[String]) {
     super.init(frame:frame)
-    self.backgroundColor = UIColor.greenColor()
+    self.backgroundColor = tabColor
     menuScrollView.frame.size = frame.size
-    //menuScrollView.backgroundColor = UIColor.yellowColor()
+    menuScrollView.backgroundColor = tabColor
     self.addSubview(menuScrollView)
     self.setupViewWithFrame(frame, titlesArray: titles)
     
@@ -33,10 +33,10 @@ class RATabView: UIView {
   }
   
   func setupViewWithFrame(frame:CGRect,titlesArray:[String]){
-    var contentOffset:CGFloat = 0
+    var contentOffset:CGFloat = self.frame.width/2
     for (index,title) in titlesArray.enumerate() {
       let button = RATabItem(frame:CGRectMake(contentOffset, 0, 0, frame.size.height), title:title)
-      button.backgroundColor = UIColor.orangeColor()
+      //button.backgroundColor = UIColor.orangeColor()
       //
       contentOffset +=  button.intrinsicContentSize().width
       button.frame.size.width = button.intrinsicContentSize().width
@@ -46,13 +46,33 @@ class RATabView: UIView {
       buttons.append(button)
       menuScrollView.addSubview(button)
     }
-    menuScrollView.contentSize = CGSizeMake(contentOffset, tabHeight)
+    menuScrollView.contentSize = CGSizeMake(contentOffset + self.frame.width/2
+, tabHeight)
      self.setNeedsLayout()
   }
   
   func selectTab(sender:UIButton){
       delegate?.selectedTabIndex(sender.tag)
   }
-    
+  
+  func selectedTabIndex(index:Int){
+   let button = buttons[index]
+   // let newContentOffsetX :CGFloat = (menuScrollView.contentSize.width/2) - (menuScrollView.bounds.size.width/2);
+    let centerButton = button.center
+//    var xofsset = menuScrollView.contentSize.width - button.frame.origin.x - button.frame.size.width
+//    if xofsset > menuScrollView.contentSize.width{
+//      //xofsset = centerButton
+//       xofsset = menuScrollView.contentSize.width/2
+//    }else{
+//     xofsset = 50
+//    }
+// 
+   // if center.x < menuScrollView.contentSize.width{
+        let offset =   (menuScrollView.contentSize.width / CGFloat(buttons.count) ) *  CGFloat(index)
+   let point = CGPointMake(offset, 0)
+  
+    self.menuScrollView.setContentOffset(point, animated: true)
+  //  }
+  }
 
 }

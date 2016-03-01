@@ -19,9 +19,9 @@ class RATabItem: UIButton {
     
     
     self.setTitle(title, forState: UIControlState.Normal)
-    self.setTitleColor(UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1), forState: UIControlState.Normal)
-    self.setTitleColor(UIColor(red: 66/255, green: 184/255, blue: 80/255, alpha: 1), forState: UIControlState.Selected)
-    self.titleLabel?.font = UIFont.systemFontOfSize(21)
+    self.setTitleColor(titleTabColor, forState: UIControlState.Normal)
+   // self.setTitleColor(UIColor(red: 66/255, green: 184/255, blue: 80/255, alpha: 1), forState: UIControlState.Selected)
+    self.titleLabel?.font = UIFont.systemFontOfSize(32)
     
     
   }

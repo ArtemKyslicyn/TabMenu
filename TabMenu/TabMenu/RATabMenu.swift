@@ -35,7 +35,7 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
   private var tabMenuAppeareance :TabMenuAppeareance!
   private var navigationView:RATabNavigationView!
   private var tabView:RATabView!
-  private var pageController:UIPageViewController!
+  private var pageController:RAPageViewController!
   public var  pageViewControllers = [UIViewController]()
   
   required public init?(coder aDecoder: NSCoder) {
@@ -48,6 +48,8 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     super.init(nibName: nil, bundle: nil)
     self.settings  = settings
     self.pageViewControllers = viewControllers
+    
+   
     //pageManager.controllerArray = viewControllers
     navigationView = RATabNavigationView(frame: CGRect( x: 0, y: 0,  width: self.view.frame.width, height: navigationHeight))
     self.view.addSubview(navigationView)
@@ -56,13 +58,13 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     tabView.delegate = self
     self.view.addSubview(tabView)
     
-    pageController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+    pageController = RAPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     pageController.view.frame = CGRectMake(0, navigationHeight+tabHeight, self.view.frame.width, self.view.frame.height-navigationHeight+tabHeight)
     pageController.view.backgroundColor = UIColor.redColor()
    
     pageController.dataSource = self
     pageController.delegate = self
-    pageController.doubleSided = false
+    //pageController.doubleSided = false
     self.view.addSubview(pageController.view)
     
    
@@ -75,7 +77,7 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
   
     
     pageController.didMoveToParentViewController(self)
-    self.view.gestureRecognizers = pageController.gestureRecognizers
+    self.view.gestureRecognizers = pageController.gestureRecognizers()
   }
   
   func setPageIndex(index:Int){
@@ -142,19 +144,21 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
       // User is on the first view controller and swiped left to loop to
       // the last view controller.
       guard previousIndex >= 0 else {
-        return pageViewControllers.last
+        return nil
       }
       
       guard pageViewControllers.count > previousIndex else {
         return nil
       }
-      
+      tabView.selectedTabIndex(previousIndex)
       return pageViewControllers[previousIndex]
   }
   
   public func pageViewController(pageViewController: UIPageViewController,
     viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
     
+      navigationView.titleLabel.text = viewController.title
+      navigationView.setNeedsLayout()
       guard let viewControllerIndex = pageViewControllers.indexOf(viewController) else {
         return nil
       }
@@ -164,15 +168,16 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
       
       // User is on the last view controller and swiped right to loop to
       // the first view controller.
-      guard orderedViewControllersCount != nextIndex else {
-        return pageViewControllers.first
-      }
+//      guard orderedViewControllersCount != nextIndex else {
+//        return pageViewControllers.first
+//      }
       
       guard orderedViewControllersCount > nextIndex else {
         return nil
       }
-      
+      tabView.selectedTabIndex(nextIndex)
       return pageViewControllers[nextIndex]
+     
   }
   
 //pageViewController(pageViewController: UIPageViewController, spineLocationForInterfaceOrientation orientation: UIInterfaceOrientation) -> UIPageViewControllerSpineLocation{

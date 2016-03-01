@@ -37,6 +37,9 @@
 		6A36A8DD1C831D6A0065F878 /* RATabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A36A8DC1C831D6A0065F878 /* RATabItem.swift */; };
 		6A36A8E11C83296E0065F878 /* RATabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A36A8E01C83296E0065F878 /* RATabNavigationView.swift */; };
 		6A36A8E31C833A6F0065F878 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A36A8E21C833A6F0065F878 /* Settings.swift */; };
+		6A6092391C8469190009A9CF /* RAPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6092381C8469190009A9CF /* RAPageController.swift */; };
+		6A60923B1C84A4120009A9CF /* PagingTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A60923A1C84A4120009A9CF /* PagingTransitionControllerDelegate.swift */; };
+		6A60923D1C84A5400009A9CF /* PagingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A60923C1C84A5400009A9CF /* PagingAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +75,9 @@
 		6A36A8DC1C831D6A0065F878 /* RATabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RATabItem.swift; path = TabMenu/TabView/RATabItem.swift; sourceTree = "<group>"; };
 		6A36A8E01C83296E0065F878 /* RATabNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RATabNavigationView.swift; path = TabMenu/RATabNavigationView.swift; sourceTree = "<group>"; };
 		6A36A8E21C833A6F0065F878 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = TabMenu/Settings.swift; sourceTree = "<group>"; };
+		6A6092381C8469190009A9CF /* RAPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAPageController.swift; path = TabMenu/RAPageController.swift; sourceTree = "<group>"; };
+		6A60923A1C84A4120009A9CF /* PagingTransitionControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PagingTransitionControllerDelegate.swift; path = TabMenu/PagingTransitionControllerDelegate.swift; sourceTree = "<group>"; };
+		6A60923C1C84A5400009A9CF /* PagingAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PagingAnimation.swift; path = TabMenu/PagingAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +124,7 @@
 		6A36A89D1C7DB8E50065F878 /* TabMenu */ = {
 			isa = PBXGroup;
 			children = (
+				6A6092371C8468F90009A9CF /* RAPageController */,
 				6A36A8E21C833A6F0065F878 /* Settings.swift */,
 				6A36A8DF1C8328B60065F878 /* TabNavigation */,
 				6A36A8DE1C831FD00065F878 /* TabView */,
@@ -201,6 +208,16 @@
 				6A36A8E01C83296E0065F878 /* RATabNavigationView.swift */,
 			);
 			name = TabNavigation;
+			sourceTree = "<group>";
+		};
+		6A6092371C8468F90009A9CF /* RAPageController */ = {
+			isa = PBXGroup;
+			children = (
+				6A6092381C8469190009A9CF /* RAPageController.swift */,
+				6A60923C1C84A5400009A9CF /* PagingAnimation.swift */,
+				6A60923A1C84A4120009A9CF /* PagingTransitionControllerDelegate.swift */,
+			);
+			name = RAPageController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,10 +306,12 @@
 				6A36A8CD1C7F2DF60065F878 /* CommentTableViewCell.swift in Sources */,
 				6A36A88A1C7DA7320065F878 /* AppDelegate.swift in Sources */,
 				6A36A8C61C7F28DD0065F878 /* User.swift in Sources */,
+				6A60923B1C84A4120009A9CF /* PagingTransitionControllerDelegate.swift in Sources */,
 				6A36A8B11C7DF2590065F878 /* RATabMenu.swift in Sources */,
 				6A36A8D71C80839F0065F878 /* RAPageManager.swift in Sources */,
 				6A36A8D01C7F2E100065F878 /* Comment.swift in Sources */,
 				6A36A8B91C7EFEAF0065F878 /* LikeTableViewCell.swift in Sources */,
+				6A6092391C8469190009A9CF /* RAPageController.swift in Sources */,
 				6A36A8D51C7F56880065F878 /* TabMenuAppeareance.swift in Sources */,
 				6A36A8DD1C831D6A0065F878 /* RATabItem.swift in Sources */,
 				6A36A8E31C833A6F0065F878 /* Settings.swift in Sources */,
@@ -300,6 +319,7 @@
 				6A36A8E11C83296E0065F878 /* RATabNavigationView.swift in Sources */,
 				6A36A8C41C7F28060065F878 /* FeedItemAppearance.swift in Sources */,
 				6A36A8AD1C7DF2200065F878 /* CommentsViewController.swift in Sources */,
+				6A60923D1C84A5400009A9CF /* PagingAnimation.swift in Sources */,
 				6A36A8D91C808FB40065F878 /* RAScrollViewHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
