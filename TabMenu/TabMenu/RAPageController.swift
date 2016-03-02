@@ -130,12 +130,15 @@ public class RAPageViewController:UIViewController {
   
   override public func viewDidLoad() {
     super.viewDidLoad()
+    
     let swipeLeftGestureRecognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "viewWasSwiped:")
     swipeLeftGestureRecognizer.direction = .Left
     self.view!.addGestureRecognizer(swipeLeftGestureRecognizer)
     let swipeRightGestureRecognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "viewWasSwiped:")
     swipeRightGestureRecognizer.direction = .Right
+    
     self.view!.addGestureRecognizer(swipeRightGestureRecognizer)
+    
     if self.viewControllers.count > 0 {
      
       let newViewController: UIViewController = self.viewControllers.last!
@@ -162,7 +165,11 @@ public class RAPageViewController:UIViewController {
     
     if let newViewController = newViewController,oldViewController = oldViewController {
       newViewController.willMoveToParentViewController(self)
+      self.addChildViewController(oldViewController)
       self.addChildViewController(newViewController)
+      self.view.addSubview(newViewController.view)
+      self.view.addSubview(oldViewController.view)
+      
       newViewController.didMoveToParentViewController(self)
       newViewController.beginAppearanceTransition(true, animated: true)
       var newFrame: CGRect = self.view.bounds
@@ -215,6 +222,7 @@ public class RAPageViewController:UIViewController {
           
           newViewController.endAppearanceTransition()
           oldViewController.removeFromParentViewController()
+          oldViewController.view.removeFromSuperview()
           self.delegate?.pageViewController?(UIPageViewController(), didFinishAnimating: true, previousViewControllers: [oldViewController], transitionCompleted: true)
           
       })

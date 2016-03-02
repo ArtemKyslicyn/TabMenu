@@ -35,7 +35,7 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
   private var tabMenuAppeareance :TabMenuAppeareance!
   private var navigationView:RATabNavigationView!
   private var tabView:RATabView!
-  private var pageController:RAPageViewController!
+  private var pageController:UIPageViewController!
   public var  pageViewControllers = [UIViewController]()
   
   required public init?(coder aDecoder: NSCoder) {
@@ -58,7 +58,7 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     tabView.delegate = self
     self.view.addSubview(tabView)
     
-    pageController = RAPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+    pageController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     pageController.view.frame = CGRectMake(0, navigationHeight+tabHeight, self.view.frame.width, self.view.frame.height-navigationHeight+tabHeight)
     pageController.view.backgroundColor = UIColor.redColor()
    
@@ -77,7 +77,7 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
   
     
     pageController.didMoveToParentViewController(self)
-    self.view.gestureRecognizers = pageController.gestureRecognizers()
+    self.view.gestureRecognizers = pageController.gestureRecognizers
   }
   
   func setPageIndex(index:Int){

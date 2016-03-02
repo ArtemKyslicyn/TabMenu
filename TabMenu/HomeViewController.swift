@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
     pageMenu = RATabMenu(viewControllers: controllerArray, frame: self.view.frame, settings: RATabMenuSettings())
    
     self.view.addSubview(pageMenu!.view)
-    self.view.backgroundColor = UIColor.magentaColor()
+    self.view.backgroundColor = UIColor.purpleColor()
     // Do any additional setup after loading the view, typically from a nib.
   }
 
