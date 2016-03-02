@@ -26,22 +26,30 @@ class RATabView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     super.init(frame:frame)
     
     self.backgroundColor = tabColor
+    //collectionViewLayout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+    //collectionViewLayout.itemSize = CGSize(width: 90, height: 120)
     collectionView = UICollectionView(frame:self.bounds, collectionViewLayout: collectionViewLayout)
     collectionView.dataSource = self
     collectionView.delegate = self
-    collectionView.backgroundColor = UIColor.greenColor()
+    collectionView.contentInset = UIEdgeInsetsMake(0, frame.width/2, 0, frame.width/2)
+    collectionView.backgroundColor = UIColor.clearColor()
     self.addSubview(collectionView)
     self.configureCollectionView()
+   
+    //collectionView.sc
+   // SetScrollViewContentInsets
 //    menuScrollView.frame.size = frame.size
 //    menuScrollView.backgroundColor = tabColor
 //    self.addSubview(menuScrollView)
 //    self.setupViewWithFrame(frame, titlesArray: titles)
-    
+    self.collectionView.reloadData()
   }
 
    func configureCollectionView() {
     
-   // collectionViewLayout.scrollDirection = .Horizontal
+    collectionViewLayout.scrollDirection = .Horizontal
+    collectionViewLayout.minimumInteritemSpacing = 0;
+
     collectionView?.showsHorizontalScrollIndicator = false
     collectionView?.registerClass(RATabItemCollectionViewCell.self, forCellWithReuseIdentifier: String(RATabItemCollectionViewCell))
   }
@@ -74,6 +82,9 @@ class RATabView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
   }
   
   func selectedTabIndex(index:Int){
+    let indexPath =  NSIndexPath(forItem: index, inSection: 0)
+    print(index)
+    collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
    //let button = buttons[index]
    // let newContentOffsetX :CGFloat = (menuScrollView.contentSize.width/2) - (menuScrollView.bounds.size.width/2);
    // let centerButton = button.center
@@ -108,7 +119,8 @@ class RATabView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     //  cell.
       if let cell = cell as? RATabItemCollectionViewCell {
         cell.titleLabel.text = titles[indexPath.row]
-      }
+        cell.backgroundColor = UIColor.redColor()
+    }
   }
   
    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -118,22 +130,39 @@ class RATabView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
   }
   
    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    //delegate.controllerDidSelected(index: indexPath.row)
-    
-//    guard let currentCell = collectionView.cellForItemAtIndexPath(indexPath) else {
-//      return
-//    }
-//    
-    // move cells
-    }
+      delegate?.selectedTabIndex(indexPath.row)
+   }
+  
+
+}
+
+extension RATabView: UICollectionViewDelegateFlowLayout {
   
   func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-    return CGSizeMake(30, 30)
+    let title = self.titles[indexPath.row]
+     let textSize = title.widthWithConstrainedWidth(50, font: titleTabFont)
+
+     return CGSizeMake(textSize.width + 10, textSize.height)
   }
   
   func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: NSInteger) -> CGFloat {
-    return  1 //-collectionView.bounds.size.width * CGFloat(overlay)
+    return 0
   }
+  
+//  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: NSInteger) -> CGFloat {
+//    return 0
+//  }
+//  
+  
+}
 
 
+extension String {
+  func widthWithConstrainedWidth(height:CGFloat, font: UIFont) -> CGSize {
+    let constraintRect = CGSize(width: CGFloat.max, height:height)
+    
+    let boundingBox = self.boundingRectWithSize(constraintRect, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+    
+    return CGSizeMake(boundingBox.width, height)
+  }
 }

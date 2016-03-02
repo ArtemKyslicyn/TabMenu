@@ -16,3 +16,4 @@ public let navColor =  UIColor(red: 77/255, green: 170/255, blue: 212/255, alpha
 public let tabItemNormalTextColor =  UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
 public let tabItemSelectedTextColor =  UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
 public let titleTabColor = UIColor.blackColor()
+public let titleTabFont = UIFont.systemFontOfSize(21)

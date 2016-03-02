@@ -150,7 +150,7 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
       guard pageViewControllers.count > previousIndex else {
         return nil
       }
-      tabView.selectedTabIndex(previousIndex)
+      tabView.selectedTabIndex(viewControllerIndex)
       return pageViewControllers[previousIndex]
   }
   
@@ -175,7 +175,7 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
       guard orderedViewControllersCount > nextIndex else {
         return nil
       }
-      tabView.selectedTabIndex(nextIndex)
+      tabView.selectedTabIndex(viewControllerIndex)
       return pageViewControllers[nextIndex]
      
   }

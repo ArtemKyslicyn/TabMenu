@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RATabCollectionViewLayout: UICollectionViewLayout {
+class RATabCollectionViewLayout: UICollectionViewFlowLayout {
  
 
   
