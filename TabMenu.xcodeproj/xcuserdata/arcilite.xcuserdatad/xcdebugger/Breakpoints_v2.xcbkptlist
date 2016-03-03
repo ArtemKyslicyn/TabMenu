@@ -24,7 +24,7 @@
                   moduleName = "TabMenu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arcilite/Documents/TabMenu/TabMenuDemo/TabMenu/Demo/Model/FeedItemAppearance.swift"
-                  timestampString = "478622597.144317"
+                  timestampString = "478687864.46496"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -39,7 +39,7 @@
                   moduleName = "TabMenu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arcilite/Documents/TabMenu/TabMenuDemo/TabMenu/Demo/Model/FeedItemAppearance.swift"
-                  timestampString = "478622597.144568"
+                  timestampString = "478687864.465055"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -244,16 +244,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/TabView/RATabView.swift"
-            timestampString = "478606210.483979"
+            timestampString = "478692614.354249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "init(frame:titles:)"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "selectedTabIndex(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -264,13 +264,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/TabView/RATabView.swift"
-            timestampString = "478619402.264466"
+            timestampString = "478692614.354249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "init(frame:titles:)"
-            landmarkType = "5">
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "RATabView"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -280,75 +280,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/TabView/RATabView.swift"
-            timestampString = "478617490.096239"
+            timestampString = "478692614.354249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "init(frame:titles:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TabMenu/TabMenu/TabView/RATabView.swift"
-            timestampString = "478623583.385491"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TabMenu/TabMenu/TabView/RATabView.swift"
-            timestampString = "478621917.163418"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "configureCollectionView()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TabMenu/TabMenu/TabView/RATabView.swift"
-            timestampString = "478623583.385491"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "collectionView(_:cellForItemAtIndexPath:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TabMenu/TabMenu/TabView/RATabView.swift"
-            timestampString = "478623583.385491"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "selectedTabIndex(_:)"
             landmarkType = "5">
          </BreakpointContent>

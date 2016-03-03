@@ -23,6 +23,7 @@ class RATabItemCollectionViewCell: UICollectionViewCell {
     titleLabel = UILabel(frame: CGRectMake(5,0,frame.size.width-5,frame.size.height))
     titleLabel.textAlignment = NSTextAlignment.Center
     titleLabel.font = titleTabFont
+    titleLabel.backgroundColor = UIColor.greenColor()
 //    contentView.addConstraints([
 //      createConstraint(titleLabel, toItem: contentView, attribute: .Top),
 //      createConstraint(titleLabel, toItem: contentView, attribute: .Bottom),
@@ -34,8 +35,7 @@ class RATabItemCollectionViewCell: UICollectionViewCell {
     
     
   }
-  
- 
+
   
   private func createConstraint(item: UILabel, toItem: UIView, attribute: NSLayoutAttribute) -> NSLayoutConstraint {
     return NSLayoutConstraint(item: item,
@@ -53,7 +53,8 @@ class RATabItemCollectionViewCell: UICollectionViewCell {
   }
   
   internal override func prepareForReuse() {
-    titleLabel?.text = nil
+    super.prepareForReuse()
+    //titleLabel.sizeToFit()
   }
 
 

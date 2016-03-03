@@ -31,7 +31,7 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
   let controllerScrollView = UIScrollView()
   
   private var settings = RATabMenuSettings()
-  private var pageManager : RAPageManager!
+//  private var pageManager : RAPageManager!
   private var tabMenuAppeareance :TabMenuAppeareance!
   private var navigationView:RATabNavigationView!
   private var tabView:RATabView!
@@ -77,10 +77,11 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
   
     
     pageController.didMoveToParentViewController(self)
-    self.view.gestureRecognizers = pageController.gestureRecognizers
+    //self.view.gestureRecognizers = pageController.gestureRecognizers
   }
   
   func setPageIndex(index:Int){
+    tabView.selectedTabIndex(index)
     pageController.setViewControllers([pageViewControllers[index]], direction: .Forward, animated: true) { (isComplete) -> Void in
       
     }
@@ -150,7 +151,7 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
       guard pageViewControllers.count > previousIndex else {
         return nil
       }
-      tabView.selectedTabIndex(viewControllerIndex)
+      tabView.selectedTabIndex(previousIndex)
       return pageViewControllers[previousIndex]
   }
   
@@ -166,24 +167,15 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
       let nextIndex = viewControllerIndex + 1
       let orderedViewControllersCount = pageViewControllers.count
       
-      // User is on the last view controller and swiped right to loop to
-      // the first view controller.
-//      guard orderedViewControllersCount != nextIndex else {
-//        return pageViewControllers.first
-//      }
-      
+
       guard orderedViewControllersCount > nextIndex else {
         return nil
       }
-      tabView.selectedTabIndex(viewControllerIndex)
+      tabView.selectedTabIndex(nextIndex)
       return pageViewControllers[nextIndex]
      
   }
   
-//pageViewController(pageViewController: UIPageViewController, spineLocationForInterfaceOrientation orientation: UIInterfaceOrientation) -> UIPageViewControllerSpineLocation{
-  
-//  }
-
   public func pageViewController(pageViewController: UIPageViewController,
     didFinishAnimating finished: Bool,
     previousViewControllers: [UIViewController],
