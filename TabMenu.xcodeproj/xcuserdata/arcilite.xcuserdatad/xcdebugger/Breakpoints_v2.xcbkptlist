@@ -24,7 +24,7 @@
                   moduleName = "TabMenu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arcilite/Documents/TabMenu/TabMenuDemo/TabMenu/Demo/Model/FeedItemAppearance.swift"
-                  timestampString = "478687864.46496"
+                  timestampString = "478790476.269805"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -39,7 +39,7 @@
                   moduleName = "TabMenu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/arcilite/Documents/TabMenu/TabMenuDemo/TabMenu/Demo/Model/FeedItemAppearance.swift"
-                  timestampString = "478687864.465055"
+                  timestampString = "478790476.269988"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/RAPageController.swift"
-            timestampString = "478537045.45566"
+            timestampString = "478792337.498713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/RAPageController.swift"
-            timestampString = "478537185.459929"
+            timestampString = "478792337.498713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "viewWasSwiped(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -104,11 +104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/RAPageController.swift"
-            timestampString = "478537185.459929"
+            timestampString = "478792337.498713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "viewWasSwiped(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -120,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/RAPageController.swift"
-            timestampString = "478537185.459929"
+            timestampString = "478792337.498713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "viewWasSwiped(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/RAPageController.swift"
-            timestampString = "478534716.904932"
+            timestampString = "478790401.764985"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "setViewControllers(_:direction:animated:completion:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -152,27 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/RAPageController.swift"
-            timestampString = "478534716.904932"
+            timestampString = "478789740.777423"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "setViewControllers(_:direction:animated:completion:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TabMenu/TabMenu/RAPageController.swift"
-            timestampString = "478533579.856163"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "gestureRecognizers()"
             landmarkType = "5">
          </BreakpointContent>
@@ -184,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/RATabMenu.swift"
-            timestampString = "478534518.851493"
+            timestampString = "478710299.545039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "init(viewControllers:frame:settings:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -200,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/RAPageController.swift"
-            timestampString = "478537185.459929"
+            timestampString = "478792337.498713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "viewWasSwiped(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -216,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/RAPageController.swift"
-            timestampString = "478537185.459929"
+            timestampString = "478792337.498713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "viewWasSwiped(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -232,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/RAPageController.swift"
-            timestampString = "478537185.459929"
+            timestampString = "478792337.498713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "viewWasSwiped(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -263,14 +247,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TabMenu/TabMenu/TabView/RATabView.swift"
-            timestampString = "478692614.354249"
+            filePath = "TabMenu/TabMenu/RATabMenu.swift"
+            timestampString = "478710654.596835"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "RATabView"
-            landmarkType = "3">
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "pageViewController(_:viewControllerAfterViewController:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -279,13 +263,39 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TabMenu/TabMenu/TabView/RATabView.swift"
-            timestampString = "478692614.354249"
+            filePath = "TabMenu/TabMenu/RATabMenu.swift"
+            timestampString = "478710654.596835"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "selectedTabIndex(_:)"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "pageViewController(_:viewControllerBeforeViewController:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TabMenu/TabMenu/RAPageController.swift"
+            timestampString = "478790461.740853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "setViewControllers(_:direction:animated:completion:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
