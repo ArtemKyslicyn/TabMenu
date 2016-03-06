@@ -10,7 +10,8 @@
 		6A1812A91C86D6A600C25920 /* RATabCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1812A81C86D6A600C25920 /* RATabCollectionViewLayout.swift */; };
 		6A1812B01C86EFF100C25920 /* RATabItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1812AE1C86EFF100C25920 /* RATabItemCollectionViewCell.swift */; };
 		6A1812B11C86EFF100C25920 /* RATabItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A1812AF1C86EFF100C25920 /* RATabItemCollectionViewCell.xib */; };
-		6A1812B31C89D22C00C25920 /* RAContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1812B21C89D22B00C25920 /* RAContentViewController.swift */; };
+		6A1812B31C89D22C00C25920 /* RAContentPageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1812B21C89D22B00C25920 /* RAContentPageManager.swift */; };
+		6A1812B51C8ADDC100C25920 /* RAPageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1812B41C8ADDC100C25920 /* RAPageManager.swift */; };
 		6A36A88A1C7DA7320065F878 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A36A8891C7DA7320065F878 /* AppDelegate.swift */; };
 		6A36A88C1C7DA7320065F878 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A36A88B1C7DA7320065F878 /* HomeViewController.swift */; };
 		6A36A88F1C7DA7320065F878 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A36A88D1C7DA7320065F878 /* Main.storyboard */; };
@@ -41,13 +42,15 @@
 		6A60923B1C84A4120009A9CF /* PagingTransitionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A60923A1C84A4120009A9CF /* PagingTransitionControllerDelegate.swift */; };
 		6A60923D1C84A5400009A9CF /* PagingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A60923C1C84A5400009A9CF /* PagingAnimation.swift */; };
 		6A6092401C85DF7F0009A9CF /* ColorExtesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A60923F1C85DF7F0009A9CF /* ColorExtesion.swift */; };
+		6AF953601C8B169200E099FA /* RAGestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9535F1C8B169100E099FA /* RAGestureHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6A1812A81C86D6A600C25920 /* RATabCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RATabCollectionViewLayout.swift; path = TabMenu/TabView/RATabCollectionViewLayout.swift; sourceTree = "<group>"; };
 		6A1812AE1C86EFF100C25920 /* RATabItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RATabItemCollectionViewCell.swift; path = TabMenu/TabView/RATabItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		6A1812AF1C86EFF100C25920 /* RATabItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RATabItemCollectionViewCell.xib; path = TabMenu/TabView/RATabItemCollectionViewCell.xib; sourceTree = "<group>"; };
-		6A1812B21C89D22B00C25920 /* RAContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAContentViewController.swift; path = TabMenu/RAContentViewController.swift; sourceTree = "<group>"; };
+		6A1812B21C89D22B00C25920 /* RAContentPageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAContentPageManager.swift; path = TabMenu/RAContentPageManager.swift; sourceTree = "<group>"; };
+		6A1812B41C8ADDC100C25920 /* RAPageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAPageManager.swift; path = TabMenu/RAPageManager.swift; sourceTree = "<group>"; };
 		6A36A8861C7DA7310065F878 /* TabMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A36A8891C7DA7320065F878 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A36A88B1C7DA7320065F878 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 		6A60923A1C84A4120009A9CF /* PagingTransitionControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PagingTransitionControllerDelegate.swift; path = TabMenu/PagingTransitionControllerDelegate.swift; sourceTree = "<group>"; };
 		6A60923C1C84A5400009A9CF /* PagingAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PagingAnimation.swift; path = TabMenu/PagingAnimation.swift; sourceTree = "<group>"; };
 		6A60923F1C85DF7F0009A9CF /* ColorExtesion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorExtesion.swift; path = Demo/ColorExtesion.swift; sourceTree = "<group>"; };
+		6AF9535F1C8B169100E099FA /* RAGestureHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAGestureHandler.swift; path = TabMenu/RAGestureHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,7 +219,9 @@
 		6A6092371C8468F90009A9CF /* RAPageController */ = {
 			isa = PBXGroup;
 			children = (
-				6A1812B21C89D22B00C25920 /* RAContentViewController.swift */,
+				6AF9535F1C8B169100E099FA /* RAGestureHandler.swift */,
+				6A1812B21C89D22B00C25920 /* RAContentPageManager.swift */,
+				6A1812B41C8ADDC100C25920 /* RAPageManager.swift */,
 				6A6092381C8469190009A9CF /* RAPageController.swift */,
 				6A60923C1C84A5400009A9CF /* PagingAnimation.swift */,
 				6A60923A1C84A4120009A9CF /* PagingTransitionControllerDelegate.swift */,
@@ -311,14 +317,16 @@
 				6A36A88C1C7DA7320065F878 /* HomeViewController.swift in Sources */,
 				6A36A8B41C7DF2750065F878 /* FollowsViewController.swift in Sources */,
 				6A36A8DB1C823EE40065F878 /* RATabView.swift in Sources */,
+				6A1812B51C8ADDC100C25920 /* RAPageManager.swift in Sources */,
 				6A36A8D21C7F2E2B0065F878 /* Like.swift in Sources */,
 				6A36A8A71C7DF16B0065F878 /* AllViewController.swift in Sources */,
-				6A1812B31C89D22C00C25920 /* RAContentViewController.swift in Sources */,
+				6A1812B31C89D22C00C25920 /* RAContentPageManager.swift in Sources */,
 				6A36A8B01C7DF2590065F878 /* RAMenuItemView.swift in Sources */,
 				6A36A8CD1C7F2DF60065F878 /* CommentTableViewCell.swift in Sources */,
 				6A36A88A1C7DA7320065F878 /* AppDelegate.swift in Sources */,
 				6A36A8C61C7F28DD0065F878 /* User.swift in Sources */,
 				6A6092401C85DF7F0009A9CF /* ColorExtesion.swift in Sources */,
+				6AF953601C8B169200E099FA /* RAGestureHandler.swift in Sources */,
 				6A60923B1C84A4120009A9CF /* PagingTransitionControllerDelegate.swift in Sources */,
 				6A36A8B11C7DF2590065F878 /* RATabMenu.swift in Sources */,
 				6A36A8D01C7F2E100065F878 /* Comment.swift in Sources */,

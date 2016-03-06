@@ -58,12 +58,12 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     tabView.delegate = self
     self.view.addSubview(tabView)
     
-    pageController = RAPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+    pageController = RAPageViewController()
     pageController.view.frame = CGRectMake(0, navigationHeight+tabHeight, self.view.frame.width, self.view.frame.height-navigationHeight+tabHeight)
     pageController.view.backgroundColor = UIColor.redColor()
    
-    pageController.dataSource = self
-    pageController.delegate = self
+    //pageController.dataSource = self
+    //pageController.delegate = self
     //pageController.doubleSided = false
     self.view.addSubview(pageController.view)
     
@@ -81,9 +81,10 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
   
   func setPageIndex(index:Int){
     tabView.selectedTabIndex(index)
-    pageController.setViewControllers([pageViewControllers[index]], direction: .Forward, animated: true) { (isComplete) -> Void in
-      
-    }
+    pageController.setCurrentController(pageViewControllers[index])
+//    pageController.setViewControllers([pageViewControllers[index]], direction: .Forward, animated: true) { (isComplete) -> Void in
+//      
+//    }
   }
   
   func selectedTabIndex(index:Int){

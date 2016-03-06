@@ -9,13 +9,13 @@
 import UIKit
 
 class RAPageManager: NSObject {
-      var pagesAddedDictionary : [Int : Int] = [:]
-      var controllerArray : [UIViewController] = []
-      var menuItems : [RAMenuItemView] = []
-      var menuItemWidths : [CGFloat] = []
+      //var pagesAddedDictionary : [Int : Int] = [:]
+      //var controllerArray : [UIViewController] = []
+      //var menuItems : [RAMenuItemView] = []
+      //var menuItemWidths : [CGFloat] = []
   
-      private var scrollViewHandler:RAScrollViewHandler!
-      private var gestureHandler : RAGestureHandler!
+      //private var scrollViewHandler:RAScrollViewHandler!
+      //private var gestureHandler : RAGestureHandler!
   
   
   

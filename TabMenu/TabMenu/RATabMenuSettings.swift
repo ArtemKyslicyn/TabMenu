@@ -7,12 +7,12 @@
 //
 
 import UIKit
-
-public enum  RAScrollDirection : Int {
-  case Left
-  case Right
-  case Other
-}
+//
+//public enum  RAScrollDirection : Int {
+//  case Left
+//  case Right
+//  case Other
+//}
 
 public class RATabMenuSettings: NSObject {
 
