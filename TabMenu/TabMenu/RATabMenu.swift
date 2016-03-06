@@ -81,6 +81,8 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
   
   func setPageIndex(index:Int){
     tabView.selectedTabIndex(index)
+    navigationView.titleLabel.text = pageViewControllers[index].title
+   
     pageController.setCurrentController(pageViewControllers[index])
 //    pageController.setViewControllers([pageViewControllers[index]], direction: .Forward, animated: true) { (isComplete) -> Void in
 //      

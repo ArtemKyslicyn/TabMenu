@@ -62,7 +62,7 @@ class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
     let x_max = CGFloat(pow(M_E,Double( -w_0 * t_max))) * (A + B * t_max);
     //		NSLog(@"v_0 = %f, x_0 = %f, t_max = %f, x_max = %f", velocity.x, x_0, t_max, x_max);
     let direction =  self.loadPageByDirection(x_max, velocityx: velocity.x)
-
+    self.restorePagesByDirection(direction)
    
   }
   
@@ -75,7 +75,7 @@ class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
       if ( self.pageManager.isNextPageLoaded()) {
         direction = .RightNextPage
       }
-    } else if (x_max <= -0.5  || velocityx < -40) {
+    } else if x_max <= -0.5  || velocityx < -40 {
       self.pageManager.loadPreviosPage()
       if (self.pageManager.isPreviosPageLoaded()) {
         direction = .LeftPreviosPage
@@ -86,8 +86,35 @@ class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
   }
   
   
-  func restorePages(){
+  func restorePagesByDirection(direction:RAScrollDirection){
+    switch direction{
+    case .LeftPreviosPage:
+      self.turnToPreviosPage()
+    case .RightNextPage:
+      self.turnToNextPage()
+    case .Other:
+      break;
+    }
+  }
+  
+  
+  func turnToPreviosPage(){
     
   }
+  
+  
+  func turnToNextPage(){
+    
+  }
+  
+  
+  
+}
+
+class MathModelSwiping {
+  var A:CGFloat = 0;
+  var B:CGFloat = 0// = velocity.x + w_0 * 0;
+  var t_max:CGFloat = 0 //= max(1 / w_0 - A / B, 0);
+  var x_max:CGFloat = 0 // = CGFloat(pow(M_E,Double( -w_0 * t_max))) * (A + B * t_max);
   
 }

@@ -42,6 +42,7 @@ public class RAPageViewController: UIViewController {
   }
 
   public func setCurrentController(viewController:UIViewController){
+        pageManager.unloadAll()
         pageManager.setContentController(viewController)
         
   }

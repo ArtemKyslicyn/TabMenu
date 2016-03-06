@@ -50,10 +50,13 @@ public class RAContentPageManager: NSObject {
   }
 
   func setContentController(contentViewController:UIViewController?){
+   
     if self.contentViewController == contentViewController{
       return;
     }
+    
     self.unloadNonActiveControllers()
+    
     contentViewController?.willMoveToParentViewController(nil)
     if let contentViewController = contentViewController{
         rootViewController.addChildViewController(contentViewController)
@@ -130,6 +133,16 @@ extension RAContentPageManager{
       self.contentViewController = nexViewController
     }else{
       self.unloadNonActiveControllers()
+    }
+  }
+  
+  func unloadAll(){
+    for vc in rootViewController.childViewControllers{
+      if vc != contentViewController{
+      vc.willMoveToParentViewController(nil)
+      vc.view.removeFromSuperview()
+      vc.removeFromParentViewController()
+      }
     }
   }
   
