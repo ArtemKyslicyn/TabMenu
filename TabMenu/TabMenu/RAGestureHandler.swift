@@ -41,29 +41,66 @@ class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
   func panGestureMoved(gestureRecognizer:UIPanGestureRecognizer){
     
     // Elastic paging and bouncing modeled with damping.
-    let w_0:CGFloat  = 0.7 // natural frequency
-    let zeta:CGFloat = 0.8 // damping ratio for under-damping
-    let w_d:CGFloat = w_0 * sqrt(1 - zeta * zeta); // damped frequency
-  
+    let bounds = self.pageManager.rootViewController.view.bounds;
+    var translation = gestureRecognizer.translationInView(self.pageManager.rootViewController.view)
+    let boundsCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+    var center = self.pageManager.contentViewController.view.center;
+
+  if gestureRecognizer.state == .Began {
+    if center.x < boundsCenter.x && !pageManager.isNextPageLoaded() {
+     // The end. Add some damping.
+        translation.x /= 2;
+    } else if center.x > boundsCenter.x  && !pageManager.isPreviosPageLoaded() {
+      
+        translation.x /= 2;
+    }
     
+    center.x += translation.x;
+    
+    if (center.x < boundsCenter.x) {
+          pageManager.loadNextNotLoadedPage()
+
+    } else if (center.x > boundsCenter.x) {
+        pageManager.isPreviosPageLoaded()
+    }
+    
+    pageManager.contentViewController.view.center = center;
+    let previousViewCenter = center;
+    pageManager.previousViewController?.view.center = previousViewCenter;
+    let nextViewCenter = center;
+    
+    pageManager.nextViewController?.view.center = nextViewCenter;
+    
+    gestureRecognizer.setTranslation(CGPointZero, inView: gestureRecognizer.view)
+ 
+
+  }else if  gestureRecognizer.state == .Changed{
     var velocity = gestureRecognizer.velocityInView(self.pageManager.rootViewController.view);
     // Scale velocity down.
     velocity.x /= 20
     velocity.y /= 20
     
+    let mathModel = MathModelSwiping(velocity: velocity)
     // Use critical damping to calculate the max displacement: x(t) = (A + B * t) * e^(-w_0 * t)
     // Use x(t)' = 0 to get the max x(t) — amplitude.
     // x(t)' = [B - w_0 * (A + B * t)] * e^(-w_0 * t)
     // x(t)' = 0 => t = 1 / w_0 - A / B.
     // x_max = (v_0 / w_0 + x_0) * e^[-v_0 / (v_0 + w_0 * x_0)]
-    let A:CGFloat = 0;
-    let B:CGFloat = velocity.x + w_0 * 0;
-    let t_max = max(1 / w_0 - A / B, 0);
-    let x_max = CGFloat(pow(M_E,Double( -w_0 * t_max))) * (A + B * t_max);
+    //    let A:CGFloat = 0;
+    //    let B:CGFloat = velocity.x + w_0 * 0;
+    //    let t_max = max(1 / w_0 - A / B, 0);
+    //    let x_max = CGFloat(pow(M_E,Double( -w_0 * t_max))) * (A + B * t_max);
     //		NSLog(@"v_0 = %f, x_0 = %f, t_max = %f, x_max = %f", velocity.x, x_0, t_max, x_max);
-    let direction =  self.loadPageByDirection(x_max, velocityx: velocity.x)
+    
+    let direction =  self.loadPageByDirection(mathModel.x_max, velocityx: velocity.x)
     self.restorePagesByDirection(direction)
-   
+    
+  }else if gestureRecognizer.state == .Ended || gestureRecognizer.state ==  .Cancelled{
+    
+  }
+    
+    
+    
   }
   
   func loadPageByDirection(x_max:CGFloat,velocityx:CGFloat) -> RAScrollDirection{
@@ -99,7 +136,9 @@ class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
   
   
   func turnToPreviosPage(){
-    
+   let previousViewCenter = pageManager.previousViewController!.view.center;
+   // let newPreviousViewCenter = boundsCenter;
+   // let newCenter = CGPointMake(newPreviousViewCenter.x , newPreviousViewCenter.y);
   }
   
   
@@ -112,9 +151,42 @@ class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
 }
 
 class MathModelSwiping {
+  private var velocity:CGPoint!
+  let w_0:CGFloat  = 0.7 // natural frequency
+  let zeta:CGFloat = 0.8 // damping ratio for under-damping
+  var w_d:CGFloat = 0 // damped frequency
+  
   var A:CGFloat = 0;
   var B:CGFloat = 0// = velocity.x + w_0 * 0;
   var t_max:CGFloat = 0 //= max(1 / w_0 - A / B, 0);
   var x_max:CGFloat = 0 // = CGFloat(pow(M_E,Double( -w_0 * t_max))) * (A + B * t_max);
+  
+  init(let velocity:CGPoint){
+    //super.init()
+    self.velocity = velocity
+    
+     w_d = w_0 * sqrt(1 - zeta * zeta);
+   
+     A = 0;
+     B = velocity.x + w_0 * 0;
+     t_max = max(1 / w_0 - A / B, 0);
+     x_max = CGFloat(pow(M_E,Double( -w_0 * t_max))) * (A + B * t_max);
+    
+  
+    
+  }
+
+  
+  
+  
+  
+  func isDumping(){
+//    let xMaxLimit = 0;
+//    let  criticalVelocity : CGFloat  = w_0 * (xMaxLimit * M_E - x_0);
+//    if (velocity.x > CRITICAL_VELOCITY) {
+//      underDamping = YES;
+//      velocity.x /= 1.5f;
+//    }
+  }
   
 }
