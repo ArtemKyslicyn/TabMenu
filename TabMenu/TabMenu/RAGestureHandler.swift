@@ -39,64 +39,79 @@ class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
   }
   
   func panGestureMoved(gestureRecognizer:UIPanGestureRecognizer){
-    
     // Elastic paging and bouncing modeled with damping.
     let bounds = self.pageManager.rootViewController.view.bounds;
     var translation = gestureRecognizer.translationInView(self.pageManager.rootViewController.view)
     let boundsCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
     var center = self.pageManager.contentViewController.view.center;
-
-  if gestureRecognizer.state == .Began {
-    if center.x < boundsCenter.x && !pageManager.isNextPageLoaded() {
-     // The end. Add some damping.
-        translation.x /= 2;
-    } else if center.x > boundsCenter.x  && !pageManager.isPreviosPageLoaded() {
+    
+    if gestureRecognizer.state == .Began {
       
-        translation.x /= 2;
-    }
-    
-    center.x += translation.x;
-    
-    if (center.x < boundsCenter.x) {
-          pageManager.loadNextNotLoadedPage()
-
-    } else if (center.x > boundsCenter.x) {
-        pageManager.isPreviosPageLoaded()
-    }
-    
-    pageManager.contentViewController.view.center = center;
-    let previousViewCenter = center;
-    pageManager.previousViewController?.view.center = previousViewCenter;
-    let nextViewCenter = center;
-    
-    pageManager.nextViewController?.view.center = nextViewCenter;
-    
-    gestureRecognizer.setTranslation(CGPointZero, inView: gestureRecognizer.view)
- 
+   
 
   }else if  gestureRecognizer.state == .Changed{
+    
+    
+      if center.x < boundsCenter.x && !pageManager.isNextPageLoaded() {
+        // The end. Add some damping.
+        translation.x /= 2;
+      } else if center.x > boundsCenter.x  && !pageManager.isPreviosPageLoaded() {
+        
+        translation.x /= 2;
+      }
+      
+      center.x += translation.x;
+      
+      if (center.x < boundsCenter.x) {
+        pageManager.loadNextNotLoadedPage()
+        
+      } else if (center.x > boundsCenter.x) {
+        pageManager.loadPreviosNotLoadePage()
+      }
+      
+      pageManager.contentViewController.view.center = center;
+      let previousViewCenter = center;
+      pageManager.previousViewController?.view.center = previousViewCenter;
+      let nextViewCenter = center;
+      
+      pageManager.nextViewController?.view.center = nextViewCenter;
+      
+      gestureRecognizer.setTranslation(CGPointZero, inView: gestureRecognizer.view)
+
+    
+//    var velocity = gestureRecognizer.velocityInView(self.pageManager.rootViewController.view);
+//    // Scale velocity down.
+//    velocity.x /= 20
+//    velocity.y /= 20
+//    
+//    let mathModel = MathModelSwiping(velocity: velocity)
+//    // Use critical damping to calculate the max displacement: x(t) = (A + B * t) * e^(-w_0 * t)
+//    // Use x(t)' = 0 to get the max x(t) — amplitude.
+//    // x(t)' = [B - w_0 * (A + B * t)] * e^(-w_0 * t)
+//    // x(t)' = 0 => t = 1 / w_0 - A / B.
+//    // x_max = (v_0 / w_0 + x_0) * e^[-v_0 / (v_0 + w_0 * x_0)]
+//    //    let A:CGFloat = 0;
+//    //    let B:CGFloat = velocity.x + w_0 * 0;
+//    //    let t_max = max(1 / w_0 - A / B, 0);
+//    //    let x_max = CGFloat(pow(M_E,Double( -w_0 * t_max))) * (A + B * t_max);
+//    //		NSLog(@"v_0 = %f, x_0 = %f, t_max = %f, x_max = %f", velocity.x, x_0, t_max, x_max);
+//    
+//    let direction =  self.loadPageByDirection(mathModel.x_max, velocityx: velocity.x)
+//    self.restorePagesByDirection(direction)
+
+
+  }else if gestureRecognizer.state == .Ended || gestureRecognizer.state ==  .Cancelled{
     var velocity = gestureRecognizer.velocityInView(self.pageManager.rootViewController.view);
     // Scale velocity down.
     velocity.x /= 20
     velocity.y /= 20
     
     let mathModel = MathModelSwiping(velocity: velocity)
-    // Use critical damping to calculate the max displacement: x(t) = (A + B * t) * e^(-w_0 * t)
-    // Use x(t)' = 0 to get the max x(t) — amplitude.
-    // x(t)' = [B - w_0 * (A + B * t)] * e^(-w_0 * t)
-    // x(t)' = 0 => t = 1 / w_0 - A / B.
-    // x_max = (v_0 / w_0 + x_0) * e^[-v_0 / (v_0 + w_0 * x_0)]
-    //    let A:CGFloat = 0;
-    //    let B:CGFloat = velocity.x + w_0 * 0;
-    //    let t_max = max(1 / w_0 - A / B, 0);
-    //    let x_max = CGFloat(pow(M_E,Double( -w_0 * t_max))) * (A + B * t_max);
-    //		NSLog(@"v_0 = %f, x_0 = %f, t_max = %f, x_max = %f", velocity.x, x_0, t_max, x_max);
-    
+
     let direction =  self.loadPageByDirection(mathModel.x_max, velocityx: velocity.x)
-    self.restorePagesByDirection(direction)
+    self.restorePagesByDirection(direction,modelSwiping: mathModel)
     
-  }else if gestureRecognizer.state == .Ended || gestureRecognizer.state ==  .Cancelled{
-    
+
   }
     
     
@@ -112,37 +127,40 @@ class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
       if ( self.pageManager.isNextPageLoaded()) {
         direction = .RightNextPage
       }
+      
+      
     } else if x_max <= -0.5  || velocityx < -40 {
-      self.pageManager.loadPreviosPage()
+      self.pageManager.loadPreviosNotLoadePage()
       if (self.pageManager.isPreviosPageLoaded()) {
         direction = .LeftPreviosPage
       }
-      
     }
     return direction
   }
   
   
-  func restorePagesByDirection(direction:RAScrollDirection){
+  func restorePagesByDirection(direction:RAScrollDirection,modelSwiping:MathModelSwiping){
     switch direction{
     case .LeftPreviosPage:
-      self.turnToPreviosPage()
+      self.turnToPreviosPage(modelSwiping)
     case .RightNextPage:
-      self.turnToNextPage()
+      self.turnToNextPage(modelSwiping)
     case .Other:
       break;
     }
   }
   
   
-  func turnToPreviosPage(){
+  func turnToPreviosPage(modelSwiping:MathModelSwiping){
+    
    let previousViewCenter = pageManager.previousViewController!.view.center;
-   // let newPreviousViewCenter = boundsCenter;
+    modelSwiping.calcIsPreviosDupming()
+  // let newPreviousViewCenter = boundsCenter;
    // let newCenter = CGPointMake(newPreviousViewCenter.x , newPreviousViewCenter.y);
   }
   
   
-  func turnToNextPage(){
+  func turnToNextPage(modelSwiping:MathModelSwiping){
     
   }
   
@@ -167,26 +185,152 @@ class MathModelSwiping {
     
      w_d = w_0 * sqrt(1 - zeta * zeta);
    
-     A = 0;
-     B = velocity.x + w_0 * 0;
+    // A = 0;
+    // B = velocity.x + w_0 * 0;
+     self.withoutDumping()
      t_max = max(1 / w_0 - A / B, 0);
      x_max = CGFloat(pow(M_E,Double( -w_0 * t_max))) * (A + B * t_max);
     
   
     
   }
+  
+  func withoutDumping(){
+    A = 0
+    B = velocity.x
 
-  
-  
-  
-  
-  func isDumping(){
-//    let xMaxLimit = 0;
-//    let  criticalVelocity : CGFloat  = w_0 * (xMaxLimit * M_E - x_0);
-//    if (velocity.x > CRITICAL_VELOCITY) {
-//      underDamping = YES;
-//      velocity.x /= 1.5f;
-//    }
   }
+  
+  func calcIsPreviosDupming(){
+    
+    if isPreviosDumping(){
+       previosUnderDumping()
+    }else{
+      self.withoutDumping()
+    }
+    
+    
+  }
+  
+  func calcIsNextDupming(){
+    if isNextDumping(){
+      nextUnderDumping()
+    }else{
+      self.withoutDumping()
+    }
+    
+  }
+
+  func isPreviosDumping() -> Bool{
+    let xMaxLimit:CGFloat = 0;
+    let  criticalVelocity : CGFloat  = w_0 * (xMaxLimit * CGFloat(M_E));
+    if (velocity.x > criticalVelocity) {
+      velocity.x /= 1.5
+      return true
+      
+    }else{
+      return false
+    }
+  }
+  
+  func isNextDumping() -> Bool{
+    let xMaxLimit:CGFloat = 0;
+    let  criticalVelocity : CGFloat  = w_0 * (xMaxLimit * CGFloat(M_E));
+    if (velocity.x < criticalVelocity) {
+      velocity.x /= 1.5
+      return true
+      
+    }else{
+      return false
+    }
+  }
+ 
+  
+  
+  func nextUnderDumping(){
+      //  Limit x_max so that no more than 1 page is scrolled in one direction in one paging.
+      let velocityMaxLimit:CGFloat = 180;
+      if (velocity.x < -velocityMaxLimit) {
+        velocity.x = -velocityMaxLimit;
+      }
+      self.calcDumpingVelocity(velocity)
+  }
+  
+  func previosUnderDumping(){
+    //  Limit x_max so that no more than 1 page is scrolled in one direction in one paging.
+    let velocityMaxLimit:CGFloat = 180;
+    if (velocity.x < -velocityMaxLimit) {
+      velocity.x = -velocityMaxLimit;
+    }
+    self.calcDumpingVelocity(velocity)
+   
+  }
+  
+  func calcDumpingVelocity(velocity:CGPoint){
+    A = 0;
+    B = ( velocity.x) / w_d;
+    let a:CGFloat  = B * w_d - A * zeta * w_0
+    let b:CGFloat = A * w_d + B * zeta * w_0
+    let sin_max:CGFloat = sqrt(a * a / (a * a + b * b))
+    var theta_max:CGFloat = 0
+    if (a * b > 0) {
+      theta_max = asin(sin_max);
+    } else {
+      theta_max = CGFloat(M_PI) - asin(sin_max);
+    }
+    t_max = theta_max / w_d;
+    if (t_max > 0) {
+      x_max = pow(CGFloat(M_E), -zeta * w_0 * t_max) * (A * cos(w_d * t_max) + B * sin(w_d * t_max));
+      
+    }
+
+  }
+  
+  
+  
+  func nextPageAnimationsCoordinatesArrayUnderDamping(underDamping:Bool,newCenter:CGPoint) -> [CGFloat]{
+    let steps = 100;
+    var pageAnimationValues = [CGFloat]();
+    var value:CGFloat;
+    for  var step = 0; step < steps; ++step {
+      let t:CGFloat = 0.1 * CGFloat(step)
+      if (underDamping) {
+        value = pow(CGFloat(M_E), -zeta * w_0 * t) * (A * cos(w_d * t) + B * sin(w_d * t)) + newCenter.x;
+      } else {
+        value = pow(CGFloat(M_E), -w_0 * t) * (A + B * t) + newCenter.x;
+      }
+      pageAnimationValues.append(value)
+      
+    }
+    return pageAnimationValues
+    
+  }
+  
+  
+  
+  
+  func previousPageAnimationsCoordinatesArrayUnderDamping(underDamping:Bool,newCenter:CGPoint) -> [CGFloat]{
+    let steps = 100;
+    var pageAnimationValues = [CGFloat]();
+    var value:CGFloat;
+    for  var step = 0; step < steps; ++step {
+      let t:CGFloat = 0.1 * CGFloat(step)
+      if (underDamping) {
+        value = pow(CGFloat(M_E), -zeta * w_0 * t) * (A * cos(w_d * t) + B * sin(w_d * t)) + newCenter.x;
+      } else {
+        value = pow(CGFloat(M_E), -w_0 * t) * (A + B * t) + newCenter.x;
+      }
+      pageAnimationValues.append(value)
+      
+    }
+    return pageAnimationValues
+    
+  }
+  
+}
+
+
+extension UIView{
+  
   
 }
