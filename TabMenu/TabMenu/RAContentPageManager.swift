@@ -40,8 +40,8 @@ public class RAContentPageManager: NSObject {
   var nextViewController:UIViewController?
   
   
-  weak public var delegate: RAPageViewControllerDelegate?
-  weak public var dataSource: RAPageViewControllerDataSource?
+  public var delegate: RAPageViewControllerDelegate?
+  public var dataSource: RAPageViewControllerDataSource?
   
   init(rootViewController:RAPageViewController){
     super.init()
@@ -80,7 +80,8 @@ public class RAContentPageManager: NSObject {
 extension RAContentPageManager{
   
   func loadPreviosPage() -> UIViewController?{
-    guard let previousViewController = self.dataSource?.pageViewController(rootViewController, viewControllerBeforeViewController: contentViewController) else {
+    print(self.dataSource)
+    guard let previousViewController = self.dataSource!.pageViewController(rootViewController, viewControllerBeforeViewController: contentViewController) else {
       return nil
     }
     let isNewViewController = !rootViewController.childViewControllers.contains(previousViewController);
@@ -99,7 +100,7 @@ extension RAContentPageManager{
   }
   
   func loadNextPage() -> UIViewController?{
-    
+    print(self.dataSource)
     guard let nextViewController = self.dataSource?.pageViewController(rootViewController, viewControllerAfterViewController: contentViewController) else {
       return nil
     }
@@ -138,11 +139,11 @@ extension RAContentPageManager{
   
   func unloadAll(){
     for vc in rootViewController.childViewControllers{
-      if vc != contentViewController{
-      vc.willMoveToParentViewController(nil)
-      vc.view.removeFromSuperview()
-      vc.removeFromParentViewController()
-      }
+//      if vc != contentViewController{
+//      vc.willMoveToParentViewController(nil)
+//      vc.view.removeFromSuperview()
+//      vc.removeFromParentViewController()
+//      }
     }
   }
   
@@ -182,13 +183,13 @@ extension RAContentPageManager{
   }
   
   func loadPreviosNotLoadePage(){
-    if isPreviosPageLoaded(){
+    if !isPreviosPageLoaded(){
       previousViewController = self.loadPreviosPage()
     }
   }
   
   func isNextPageLoaded()-> Bool{
-    if nextViewController == nil{
+    if nextViewController == nil {
       return false
     }else{
       return true

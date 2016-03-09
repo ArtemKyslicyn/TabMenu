@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 public enum  RAScrollDirection : Int {
   case LeftPreviosPage
@@ -14,7 +15,7 @@ public enum  RAScrollDirection : Int {
   case Other
 }
 
-class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
+class RAGestureHandler: NSObject,UIGestureRecognizerDelegate{
   private var panRecognizer:UIPanGestureRecognizer!
   private var pageManager:RAContentPageManager!
   init(pageManager:RAContentPageManager){
@@ -38,11 +39,18 @@ class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
     }
   }
   
+  func boundsCenter() -> CGPoint{
+    let bounds = self.pageManager.rootViewController.view.bounds
+    let boundsCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
+    return boundsCenter;
+  }
+  
   func panGestureMoved(gestureRecognizer:UIPanGestureRecognizer){
     // Elastic paging and bouncing modeled with damping.
-    let bounds = self.pageManager.rootViewController.view.bounds;
+
+    let boundsCenter = self.boundsCenter()
+    
     var translation = gestureRecognizer.translationInView(self.pageManager.rootViewController.view)
-    let boundsCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
     var center = self.pageManager.contentViewController.view.center;
     
     if gestureRecognizer.state == .Began {
@@ -63,41 +71,34 @@ class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
       center.x += translation.x;
       
       if (center.x < boundsCenter.x) {
-        pageManager.loadNextNotLoadedPage()
+          pageManager.loadNextNotLoadedPage()
         
       } else if (center.x > boundsCenter.x) {
-        pageManager.loadPreviosNotLoadePage()
+        
+         pageManager.loadPreviosNotLoadePage()
+       
       }
       
-      pageManager.contentViewController.view.center = center;
-      let previousViewCenter = center;
-      pageManager.previousViewController?.view.center = previousViewCenter;
-      let nextViewCenter = center;
+      pageManager.contentViewController.view.center = center
+      var previousViewCenter = center;
+      if let previousViewController = pageManager.previousViewController{
+           previousViewCenter.x = center.x -  previousViewController.view.frame.width
+      }
+       previousViewCenter.x = center.x 
+
+      pageManager.previousViewController?.view.center = previousViewCenter
+      var nextViewCenter = center ;
       
-      pageManager.nextViewController?.view.center = nextViewCenter;
+      if let nextViewController = pageManager.nextViewController{
+        nextViewCenter.x = center.x +  nextViewController.view.frame.width
+      }
+       nextViewCenter.x = center.x
+     // center.x = center.x + (pageManager.previousViewController?.view.frame.width)! ?? CGFloat(0)
+      pageManager.nextViewController?.view.center = nextViewCenter
       
       gestureRecognizer.setTranslation(CGPointZero, inView: gestureRecognizer.view)
 
     
-//    var velocity = gestureRecognizer.velocityInView(self.pageManager.rootViewController.view);
-//    // Scale velocity down.
-//    velocity.x /= 20
-//    velocity.y /= 20
-//    
-//    let mathModel = MathModelSwiping(velocity: velocity)
-//    // Use critical damping to calculate the max displacement: x(t) = (A + B * t) * e^(-w_0 * t)
-//    // Use x(t)' = 0 to get the max x(t) — amplitude.
-//    // x(t)' = [B - w_0 * (A + B * t)] * e^(-w_0 * t)
-//    // x(t)' = 0 => t = 1 / w_0 - A / B.
-//    // x_max = (v_0 / w_0 + x_0) * e^[-v_0 / (v_0 + w_0 * x_0)]
-//    //    let A:CGFloat = 0;
-//    //    let B:CGFloat = velocity.x + w_0 * 0;
-//    //    let t_max = max(1 / w_0 - A / B, 0);
-//    //    let x_max = CGFloat(pow(M_E,Double( -w_0 * t_max))) * (A + B * t_max);
-//    //		NSLog(@"v_0 = %f, x_0 = %f, t_max = %f, x_max = %f", velocity.x, x_0, t_max, x_max);
-//    
-//    let direction =  self.loadPageByDirection(mathModel.x_max, velocityx: velocity.x)
-//    self.restorePagesByDirection(direction)
 
 
   }else if gestureRecognizer.state == .Ended || gestureRecognizer.state ==  .Cancelled{
@@ -107,10 +108,14 @@ class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
     velocity.y /= 20
     
     let mathModel = MathModelSwiping(velocity: velocity)
-
+    CATransaction.begin()
+    CATransaction.setAnimationDuration(0.4)
+      	//[CATransaction setAnimationDuration:kPagingAnimationDuration];
     let direction =  self.loadPageByDirection(mathModel.x_max, velocityx: velocity.x)
     self.restorePagesByDirection(direction,modelSwiping: mathModel)
-    
+   
+      
+    CATransaction.commit()
 
   }
     
@@ -143,27 +148,144 @@ class RAGestureHandler: NSObject,UIGestureRecognizerDelegate {
     switch direction{
     case .LeftPreviosPage:
       self.turnToPreviosPage(modelSwiping)
-    case .RightNextPage:
+     // self.turnToNextPage(modelSwiping)
+      
+    case .RightNextPage: 
+     // self.turnToPreviosPage(modelSwiping)
       self.turnToNextPage(modelSwiping)
     case .Other:
+      self.restorePage(modelSwiping)
       break;
     }
   }
   
   
-  func turnToPreviosPage(modelSwiping:MathModelSwiping){
+  func restorePage(modelSwiping:MathModelSwiping){
+    // Bounce back to restore current page.
+    CATransaction.begin()
+    CATransaction.setAnimationDuration(0.4)
     
-   let previousViewCenter = pageManager.previousViewController!.view.center;
-    modelSwiping.calcIsPreviosDupming()
-  // let newPreviousViewCenter = boundsCenter;
-   // let newCenter = CGPointMake(newPreviousViewCenter.x , newPreviousViewCenter.y);
+    
+    if modelSwiping.t_max > 0 && modelSwiping.x_max < 0 {
+      pageManager.loadNextNotLoadedPage()
+      
+    } else if modelSwiping.t_max > 0 && modelSwiping.x_max > 0 {
+      
+      pageManager.loadPreviosNotLoadePage()
+      
+    }
+   
+    self.contentViewAnimation(modelSwiping)
+    self.turnToPreviosPage(modelSwiping,dumping: false)
+    self.turnToNextPage(modelSwiping,dumping: false)
+    
+    // Current view.
+//    CAKeyframeAnimation *pageAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position.x"];
+//    pageAnimation.delegate = self;
+//    pageAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+//    NSUInteger steps = 100;
+//    NSMutableArray *pageAnimationValues = [NSMutableArray arrayWithCapacity:steps];
+//    CGFloat value;
+//    for (NSUInteger step = 0; step < steps; ++step) {
+//      CGFloat t = 0.1f * step;
+//      value = pow(M_E, -w_0 * t) * (A + B * t) + boundsCenter.x;
+//      [pageAnimationValues addObject:@(value)];
+//    }
+//    pageAnimation.values = pageAnimationValues;
+//    [_contentController.view.layer addAnimation:pageAnimation forKey:pageAnimation.keyPath];
+//    _pagingAnimationCount++;
+//    [CATransaction setDisableActions:YES];
+//    _contentController.view.layer.position = boundsCenter;
+//    [CATransaction setDisableActions:NO];
+//    
+    
+    // Previous view.
+//    if (_previousViewController) {
+//      CGPoint previousViewCenter = CGPointMake(boundsCenter.x - pageDistance, boundsCenter.y);
+//      [pageAnimationValues removeAllObjects];
+//      for (NSUInteger step = 0; step < steps; ++step) {
+//        CGFloat t = 0.1f * step;
+//        value = pow(M_E, -w_0 * t) * (A + B * t) + previousViewCenter.x;
+//        [pageAnimationValues addObject:@(value)];
+//      }
+//      pageAnimation.values = pageAnimationValues;
+//      [_previousViewController.view.layer addAnimation:pageAnimation forKey:pageAnimation.keyPath];
+//      _pagingAnimationCount++;
+//      [CATransaction setDisableActions:YES];
+//      _previousViewController.view.layer.position = previousViewCenter;
+//      [CATransaction setDisableActions:NO];
+//  
+//    }
+//    
+//    // Next view.
+//    if (_nextViewController) {
+//      CGPoint nextViewCenter = CGPointMake(boundsCenter.x + pageDistance, boundsCenter.y);
+//      [pageAnimationValues removeAllObjects];
+//      for (NSUInteger step = 0; step < steps; ++step) {
+//        CGFloat t = 0.1f * step;
+//        value = pow(M_E, -w_0 * t) * (A + B * t) + nextViewCenter.x;
+//        [pageAnimationValues addObject:@(value)];
+//      }
+//      pageAnimation.values = pageAnimationValues;
+//      [_nextViewController.view.layer addAnimation:pageAnimation forKey:pageAnimation.keyPath];
+//      _pagingAnimationCount++;
+//      [CATransaction setDisableActions:YES];
+//      _nextViewController.view.layer.position = nextViewCenter;
+//      [CATransaction setDisableActions:NO];
+//      
+//    }
+    
+    CATransaction.commit()
   }
   
   
-  func turnToNextPage(modelSwiping:MathModelSwiping){
-    
+  func turnToPreviosPage(modelSwiping:MathModelSwiping,dumping:Bool = true){
+    let boundsCenter = self.boundsCenter()
+    let pageDistance =  pageManager.rootViewController.view.bounds.size.width;
+
+    let previousViewCenter =  CGPointMake(boundsCenter.x + pageDistance, boundsCenter.y)
+    if let previousViewController =  self.pageManager.previousViewController{
+     modelSwiping.x_0 = previousViewController.view.center.x - previousViewCenter.x ;
+    }
+    var isDumping = false
+    if dumping{
+     isDumping =  modelSwiping.calcIsPreviosDupming()
+    }
+    let animationsArray = modelSwiping.previousPageAnimationsCoordinatesArrayUnderDamping(isDumping, newCenter: previousViewCenter)
+    self.pageManager.previousViewController?.view.addSwipeAnimation(self, animationValues: animationsArray)
+   
+    CATransaction.setDisableActions(true)
+    self.pageManager.previousViewController?.view.layer.position = previousViewCenter;
+    CATransaction.setDisableActions(false)
+    //let newPreviousViewCenter = boundsCenter;
+    //let newCenter = CGPointMake(newPreviousViewCenter.x , newPreviousViewCenter.y);
   }
   
+  
+  func turnToNextPage(modelSwiping:MathModelSwiping,dumping:Bool = true){
+   
+    let boundsCenter = self.boundsCenter()
+    let pageDistance =  pageManager.rootViewController.view.bounds.size.width;
+    
+    let nextViewCenter =  CGPointMake(boundsCenter.x - pageDistance, boundsCenter.y)
+     var isDumping = false
+    if dumping{
+      isDumping =  modelSwiping.calcIsNextDupming()
+    }
+  
+    let animationsArray = modelSwiping.previousPageAnimationsCoordinatesArrayUnderDamping(isDumping, newCenter: nextViewCenter)
+    self.pageManager.nextViewController?.view.addSwipeAnimation(self, animationValues: animationsArray)
+    
+    CATransaction.setDisableActions(true)
+    self.pageManager.nextViewController?.view.layer.position = nextViewCenter;
+    CATransaction.setDisableActions(false)
+  }
+  
+  func contentViewAnimation(modelSwiping:MathModelSwiping){
+    let animationsArray = modelSwiping.previousPageAnimationsCoordinatesArrayUnderDamping(false, newCenter: pageManager.rootViewController.view.center)
+    self.pageManager.contentViewController?.view.addSwipeAnimation(self, animationValues: animationsArray)
+    
+  }
   
   
 }
@@ -178,6 +300,7 @@ class MathModelSwiping {
   var B:CGFloat = 0// = velocity.x + w_0 * 0;
   var t_max:CGFloat = 0 //= max(1 / w_0 - A / B, 0);
   var x_max:CGFloat = 0 // = CGFloat(pow(M_E,Double( -w_0 * t_max))) * (A + B * t_max);
+  var x_0 :CGFloat = 0
   
   init(let velocity:CGPoint){
     //super.init()
@@ -197,28 +320,31 @@ class MathModelSwiping {
   
   func withoutDumping(){
     A = 0
-    B = velocity.x
+    B = velocity.x + w_0 * x_0
 
   }
   
-  func calcIsPreviosDupming(){
+  func calcIsPreviosDupming() -> Bool{
+    let isDumping = isPreviosDumping()
     
-    if isPreviosDumping(){
+    if isDumping{
        previosUnderDumping()
     }else{
       self.withoutDumping()
     }
+    return isDumping
     
     
   }
   
-  func calcIsNextDupming(){
-    if isNextDumping(){
+  func calcIsNextDupming() -> Bool{
+    let isDumping = isNextDumping()
+    if isDumping {
       nextUnderDumping()
     }else{
       self.withoutDumping()
     }
-    
+    return isDumping
   }
 
   func isPreviosDumping() -> Bool{
@@ -321,7 +447,7 @@ class MathModelSwiping {
         value = pow(CGFloat(M_E), -w_0 * t) * (A + B * t) + newCenter.x;
       }
       pageAnimationValues.append(value)
-      
+     
     }
     return pageAnimationValues
     
@@ -331,6 +457,16 @@ class MathModelSwiping {
 
 
 extension UIView{
+  
+  
+  func addSwipeAnimation(delegate:NSObject,animationValues:[CGFloat],functionName:String = kCAMediaTimingFunctionLinear){
+   let pageAnimation = CAKeyframeAnimation(keyPath: "position.x")  //[CAKeyframeAnimation animationWithKeyPath:@"position.x"];
+    pageAnimation.delegate = delegate;
+    pageAnimation.timingFunction = CAMediaTimingFunction(name: functionName)
+    pageAnimation.values = animationValues;
+    self.layer.addAnimation(pageAnimation, forKey: pageAnimation.keyPath)
+  
+  }
   
   
 }

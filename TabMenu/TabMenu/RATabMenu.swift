@@ -26,7 +26,7 @@ func titlesFromViewControllers(viewControllers:[UIViewController])->[String]{
   return titles
 }
 
-public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate,UIPageViewControllerDataSource,UIPageViewControllerDelegate,RATabViewDelegate {
+public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate,RAPageViewControllerDataSource,RAPageViewControllerDelegate,RATabViewDelegate {
   
   let controllerScrollView = UIScrollView()
   
@@ -41,6 +41,7 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
   required public init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
   
   
   
@@ -60,10 +61,11 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     
     pageController = RAPageViewController()
     pageController.view.frame = CGRectMake(0, navigationHeight+tabHeight, self.view.frame.width, self.view.frame.height-navigationHeight+tabHeight)
-    pageController.view.backgroundColor = UIColor.redColor()
-   
-    //pageController.dataSource = self
-    //pageController.delegate = self
+
+    pageController.view.backgroundColor = UIColor.brownColor()
+    
+    pageController.dataSource = self
+    pageController.delegate = self
     //pageController.doubleSided = false
     self.view.addSubview(pageController.view)
     
@@ -77,6 +79,12 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
     
     pageController.didMoveToParentViewController(self)
     //self.view.gestureRecognizers = pageController.gestureRecognizers
+  }
+  
+  public override func viewDidLoad() {
+    super.viewDidLoad()
+
+  
   }
   
   func setPageIndex(index:Int){
@@ -95,7 +103,7 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
   
 
   
-  public func pageViewController(pageViewController: UIPageViewController,
+  public func pageViewController(pageViewController: RAPageViewController,
     viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
       navigationView.titleLabel.text = viewController.title
       navigationView.setNeedsLayout()
@@ -117,10 +125,11 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
         return nil
       }
       tabView.selectedTabIndex(viewControllerIndex)
-      return pageViewControllers[previousIndex]
+      let previosController = pageViewControllers[previousIndex]
+      return previosController
   }
   
-  public func pageViewController(pageViewController: UIPageViewController,
+  public func pageViewController(pageViewController: RAPageViewController,
     viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
     
       navigationView.titleLabel.text = viewController.title
@@ -138,8 +147,8 @@ public class RATabMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogni
       guard orderedViewControllersCount > nextIndex else {
         return nil
       }
-      
-      return pageViewControllers[nextIndex]
+      let nextController =  pageViewControllers[nextIndex]
+      return nextController
      
   }
   
