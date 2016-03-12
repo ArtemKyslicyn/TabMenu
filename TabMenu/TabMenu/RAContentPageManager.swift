@@ -139,11 +139,11 @@ extension RAContentPageManager{
   
   func unloadAll(){
     for vc in rootViewController.childViewControllers{
-//      if vc != contentViewController{
-//      vc.willMoveToParentViewController(nil)
-//      vc.view.removeFromSuperview()
-//      vc.removeFromParentViewController()
-//      }
+      if vc != contentViewController{
+      vc.willMoveToParentViewController(nil)
+      vc.view.removeFromSuperview()
+      vc.removeFromParentViewController()
+      }
     }
   }
   

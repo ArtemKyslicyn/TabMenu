@@ -210,13 +210,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TabMenu/TabMenu/RAGestureHandler.swift"
-            timestampString = "479208448.005364"
+            timestampString = "479287712.35484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309"
-            landmarkName = "init(velocity:)"
-            landmarkType = "5">
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "RAGestureHandler"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
